@@ -1,49 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-<script src="script.js">
-               
-// var numberOfPages = 0;
-// function showData() {
-                
-// numberOfPages = numberOfPages + 10;
-//     function Show() {
-//         let mainContent = '',
-//             main = document.querySelector('#data');
-//                     data.forEach(data => {
-//                         mainContent += `
-//                             <div>
-//                                 <h2>${data.name}</h2>
-//                                 <h4>Price: ${data.price}</h4>
-//                                 <h4>Catalog_id: ${data.catalog_id}</h4>
-//                                 <h4>Created_ad: ${data.created_ad}</h4>
-//                             </div>`;
-//                     });
-//                     console.log(mainContent);
-//                     main.innerHTML = mainContent;
-//     };
+    <script>
 
-// fetch(`index.php?number=${numberOfPages}`)
-//     .then(response => {return response.json();})
-//     .then(response => Show(data));
+        var numberOfPages = 0;
 
-// }
+        function showData() {
 
-</script>
+            fetch(`index.php?number=${numberOfPages}`)
+                .then(response => response.json())
+                .then(result => Show(result))
 
 
-<div id = "data">
+            numberOfPages = numberOfPages + 10;
 
-</div>
+            function Show(result) {
+                let mainContent = '',
+                    main = document.querySelector('#data');
+                result.forEach(result => {
+                    mainContent += `
+                            <div>
+                                <h2>${result.name}</h2>
+                                <h4>Price: ${result.price}</h4>
+                                <h4>Catalog_id: ${result.catalog_id}</h4>
+                                <h4>ID: ${result.id}</h4>
+                            </div>`;
+                });
+                console.log(mainContent);
+                main.innerHTML += mainContent;
+            };
 
-<input value = "Ещё записи" type ="button" onclick = "showData()" width="250" height="25">
 
-    
+
+        }
+
+    </script>
+
+
+    <div id="data">
+
+    </div>
+
+    <input value="Ещё записи" type="button" onclick="showData()" width="250" height="25">
+
+
 </body>
+
 </html>

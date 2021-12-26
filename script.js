@@ -1,28 +1,31 @@
-               
+'use strict';
+
 var numberOfPages = 0;
+
 function showData() {
+
+fetch(`index.php?number=${numberOfPages}`)
+    .then(response => response.json())
+    .then(result => Show(result));
+
                 
 numberOfPages = numberOfPages + 10;
-    function Show() {
+
+    function Show(result) {
         let mainContent = '',
             main = document.querySelector('#data');
-                    forEach(response => {
+                    result.forEach(result => {
                         mainContent += `
                             <div>
-                                <h2>${response.name}</h2>
-                                <h4>Price: ${response.price}</h4>
-                                <h4>Catalog_id: ${response.catalog_id}</h4>
-                                <h4>Created_ad: ${response.created_ad}</h4>
+                                <h2>${result.name}</h2>
+                                <h4>Price: ${result.price}</h4>
+                                <h4>Catalog_id: ${result.catalog_id}</h4>
+                                <h4>ID: ${result.id}</h4>
                             </div>`;
                     });
                     console.log(mainContent);
                     main.innerHTML = mainContent;
     }
 
-fetch(`index.php?number=${numberOfPages}`)
-    .then(response => {return response.json();})
-    .then(response => Show(response));
-
 }
-
 
