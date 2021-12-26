@@ -24,8 +24,7 @@ numberOfPages = numberOfPages + 10;
                             </div>`;
                     });
                     console.log(mainContent);
-                    main.innerHTML = mainContent;
+                    main.innerHTML += mainContent;
     }
 
 }
-
